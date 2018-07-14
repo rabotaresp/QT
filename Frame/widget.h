@@ -1,0 +1,37 @@
+#ifndef WIDGET_H
+#define WIDGET_H
+
+//#include <QDialog>
+#include <QWidget>
+#include <QLineEdit>
+#include <QLabel>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QTextBlock>
+
+class Frame : public QWidget
+{
+    Q_OBJECT
+    QLabel * lbl_entr;
+    QLabel * lbl_ret;
+    QLineEdit * line_ent;
+    QLineEdit * line_ret;
+    QPushButton *btn_ok;
+    QPushButton *btn_ret;
+    QPushButton *btn_qt;
+
+
+public:
+   Frame(QWidget *parent = nullptr);
+    ~Frame();
+
+protected slots:
+
+    void Ent_text(QString str);
+    void Rent_text(QString str);
+
+
+};
+
+#endif // WIDGET_H
