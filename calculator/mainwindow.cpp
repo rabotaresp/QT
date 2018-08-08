@@ -352,21 +352,122 @@ void MainWindow::keyPressEvent(QKeyEvent*event)
     }
     if(event ->key() == Qt::Key_Plus)
     {
-        result = result + nums.toDouble();
+        if (mn!=0 && pl == 0)
+        {
+            result = result - nums.toDouble();
+            ui->lcdNumber->display(result);
+            nums.clear();
+            mn = 0;
+        }
+        if (sq != 0 && pl == 0)
+        {
+            result = result*nums.toDouble();
+            ui->lcdNumber->display(result);
+            nums.clear();
+            sq = 0;
+        }
+        if (div != 0 && pl == 0)
+        {
+            result = result/nums.toDouble();
+            ui->lcdNumber->display(result);
+            nums.clear();
+            div = 0;
+        }
+        if (pl == 0)
+        {
+            result = result + nums.toDouble();
+            ui->lcdNumber->display(result);
+            nums.clear();
+            pl = 1;
+        }
+        /*result = result + nums.toDouble();
         pl = result;
         nums.clear();
-        ui->lcdNumber->display(result);
+        ui->lcdNumber->display(result);*/
     }
     if(event ->key() == Qt::Key_Minus)
     {
-        result = result - nums.toDouble();
+        if (pl != 0 && mn==0)
+        {
+            result = result + nums.toDouble();
+            ui->lcdNumber->display(result);
+            nums.clear();
+            pl = 0;
+        }
+        if (sq != 0 && mn==0)
+        {
+            result = result*nums.toDouble();
+            ui->lcdNumber->display(result);
+            nums.clear();
+            sq = 0;
+        }
+        if (div != 0 && mn==0)
+        {
+            result = result/nums.toDouble();
+            ui->lcdNumber->display(result);
+            nums.clear();
+            div = 0;
+        }
+        if (mn==0)
+        {
+            result = result - nums.toDouble();
+            ui->lcdNumber->display(result);
+            nums.clear();
+            mn = 1;
+        }
+        /*result = result - nums.toDouble();
         mn = result;
         nums.clear();
-        ui->lcdNumber->display(result);
+        ui->lcdNumber->display(result);*/
     }
     if(event ->key() == Qt::Key_Asterisk)
     {
-        if (nums.toDouble() !=0)
+        if (pl != 0 && sq == 0)
+        {
+            result = result + nums.toDouble();
+            ui->lcdNumber->display(result);
+            nums.clear();
+            pl = 0;
+        }
+        if (mn!=0 && sq == 0)
+        {
+            result = result - nums.toDouble();
+            ui->lcdNumber->display(result);
+            nums.clear();
+            mn = 0;
+        }
+        if (div != 0 && sq == 0)
+        {
+            result = result/nums.toDouble();
+            ui->lcdNumber->display(result);
+            nums.clear();
+            div = 0;
+        }
+        if (sq == 0)
+        {
+            if (nums.toDouble() !=0)
+            {
+                if (result !=0)
+                {
+                    result = result*nums.toDouble();
+                    nums.clear();
+                    ui->lcdNumber->display(result);
+                }
+                else
+                {
+                    result = 1 * nums.toDouble();
+                    ui->lcdNumber->display(result);
+                }
+                nums.clear();
+            }
+            else
+            {
+                temp = result;
+                ui->lcdNumber->display(temp);
+            }
+            sq = 1;
+        }
+        /*if (nums.toDouble() !=0)
         {
             if (result !=0)
             {
@@ -386,11 +487,56 @@ void MainWindow::keyPressEvent(QKeyEvent*event)
             temp = result;
             ui->lcdNumber->display(temp);
         }
-        sq = result;
+        sq = result;*/
     }
     if(event ->key() == Qt::Key_Slash)
     {
-        if (nums.toDouble() !=0)
+        if (pl != 0 && div ==0)
+        {
+            result = result + nums.toDouble();
+            ui->lcdNumber->display(result);
+            nums.clear();
+            pl = 0;
+        }
+        if (mn!=0 && div ==0)
+        {
+            result = result - nums.toDouble();
+            ui->lcdNumber->display(result);
+            nums.clear();
+            mn = 0;
+        }
+        if (sq != 0 && div ==0)
+        {
+            result = result*nums.toDouble();
+            ui->lcdNumber->display(result);
+            nums.clear();
+            sq = 0;
+        }
+        if (div == 0)
+        {
+            if (nums.toDouble() !=0)
+            {
+                if (result !=0)
+                {
+                    result = result/nums.toDouble();
+                    nums.clear();
+                    ui->lcdNumber->display(result);
+                }
+                else
+                {
+                    result = 1 * nums.toDouble();
+                    ui->lcdNumber->display(result);
+                }
+                nums.clear();
+            }
+            else
+            {
+                temp = result;
+                ui->lcdNumber->display(temp);
+            }
+            div = 1;
+        }
+        /*if (nums.toDouble() !=0)
         {
             if (result !=0)
             {
@@ -410,7 +556,7 @@ void MainWindow::keyPressEvent(QKeyEvent*event)
             temp = result;
             ui->lcdNumber->display(temp);
         }
-        div = result;
+        div = result;*/
     }
     if(event ->key() == Qt::Key_Enter)
     {
